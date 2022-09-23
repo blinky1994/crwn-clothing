@@ -1,4 +1,3 @@
-import userEvent from '@testing-library/user-event';
 import { createContext, useState, useEffect } from 'react'
 import { onAuthStateChangedListener, createUserDocumentFromAuth } from '../utils/firebase/firebase.utils';
 

@@ -4,7 +4,6 @@ import Button
 
 import { useContext } from 'react';
 import { CartContext } from '../../contexts/cart.context';
-import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
 const ProductCard = ({ product }) => {
     const { name, price, imageUrl } = product;

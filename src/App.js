@@ -15,13 +15,13 @@ const App = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
-        if (user) {
-            createUserDocumentFromAuth(user);
-        }
-        dispatch(setCurrentUser(user));
+    if (user) {
+      createUserDocumentFromAuth(user);
+    }
+    dispatch(setCurrentUser(user));
     })
     return unsubscribe;
-})
+  })
 
   return (
     <Routes>

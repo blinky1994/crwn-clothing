@@ -7,20 +7,18 @@ import Shop
 import Checkout from "./routes/checkout/checkout.component";
 import {  useEffect } from 'react'
 import { useDispatch } from "react-redux";
-import { onAuthStateChangedListener, createUserDocumentFromAuth } from './utils/firebase/firebase.utils';
+import { 
+  onAuthStateChangedListener, 
+  createUserDocumentFromAuth,
+  getCurrentUser
+ } from './utils/firebase/firebase.utils';
 import { setCurrentUser } from "./store/user/user.action";
 
 const App = () => {  
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
-    if (user) {
-      createUserDocumentFromAuth(user);
-    }
-    dispatch(setCurrentUser(user));
-    })
-    return unsubscribe;
+    getCurrentUser();
   })
 
   return (

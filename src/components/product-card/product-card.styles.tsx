@@ -2,19 +2,6 @@ import styled from 'styled-components';
 import { BaseButton, GoogleSignInButton, InvertedButton } 
 from '../button/button.styles'
 
-export const ProductImage= styled.img.attrs(props => ({
-  src: props.imageUrl,
-  alt: props.altText
-}))
-`
-  background-image: ${({imageUrl}) => `url(${imageUrl})`};
-  width: 100%;
-  height: 95%;
-  object-fit: cover;
-  margin-bottom: 5px;
-`
-
-
 
 export const ProductCardContainer = styled.div`
   width: 100%;
@@ -34,8 +21,15 @@ export const ProductCardContainer = styled.div`
     display: none;
   }
 
+  img {
+    width: 100%;
+    height: 95%;
+    object-fit: cover;
+    margin-bottom: 5px;
+  }
+
   &:hover {
-    ${ProductImage} {
+    img {
       opacity: 0.8;
     }
 

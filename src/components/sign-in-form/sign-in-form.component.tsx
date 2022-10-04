@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, FormEvent, ChangeEvent } from 'react';
 import FormInput from '../form-input/form-input.component';
 import { SignInContainer, ButtonContainer } from './sign-in-form.styles';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
@@ -15,7 +15,7 @@ const SignInForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password } = formFields;
 
-    const handleChange = (event) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormFields({...formFields, [name]: value })
     }
@@ -28,32 +28,14 @@ const SignInForm = () => {
         dispatch(googleSignInStart());
     }
 
-    const handleSubmit =  async (event) => {
+    const handleSubmit =  async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
             dispatch(emailSignInStart(email,password));
             resetFormFields();
         }
         catch (error) {
-            switch (error.code) {
-                case 'auth/email-already-in-use': 
-                alert('Email or password is incorrect');
-                break;
-
-                case 'auth/wrong-password': 
-                alert('Email or password is incorrect');
-                break;
-
-                case 'auth/user-not-found': 
-                alert('Email does not exist');
-                break;
-
-                case 'auth/cancelled-popup-request': 
-                break;
-
-                default:
-                console.log(error.code);
-            }
+            console.log('Error signing in: ');
         }
     }
 

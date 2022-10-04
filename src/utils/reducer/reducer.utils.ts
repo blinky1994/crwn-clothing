@@ -1,4 +1,3 @@
-import { ActionType } from "@redux-saga/types";
 import { AnyAction } from "redux";
 
 type Matchable<AC extends () => AnyAction> = AC & {

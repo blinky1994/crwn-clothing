@@ -40,7 +40,28 @@ export const ProductCardContainer = styled.div`
       display: flex;
     }
   }
+
+  @media screen and (max-width: 800px) {
+      width: 40vw;
+
+        &:hover {
+        img {
+          opacity: unset;
+        }        
+      }
+
+      ${BaseButton}, 
+        ${GoogleSignInButton}, 
+        ${InvertedButton}  {
+          display: block;
+          opacity: 0.9;
+          min-width: unset;
+          padding: 0 10px;
+          font-size: 12px;
+        }
+    }
 `
+
 
 export const Footer = styled.div`
     width: 100%;

@@ -1,70 +1,13 @@
-# Getting Started with Create React App
+# Crwn Clothing
+E-commerce fashion store built with React, Typescript, Redux and Firebase. Stripe API is also used for payment feature.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![crwnclothing](https://user-images.githubusercontent.com/56903269/210041265-ad832857-a3c9-4e32-b28b-65fe9c893be3.png)
 
-## Available Scripts
+# User authentication
+For user login, the email and password as well as google sign in features from Firebase are used. Firebase then provides `auth.currentUser` for me to check if a user is logged in.
 
-In the project directory, you can run:
+# Storing and fetching products
+Initially, React Context is used for the state of the store products but I incorporated Redux which provides a single source of truth and provide state at a global level. The products' data are stored in Firebase as a document collection which can then be fetched by grabbing the collection reference and using it to obtain a query snapshot where the products can be accessed. 
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Payment and Stripe API
+The Stripe API is used to set up the payment section and it is a fast process since the payment form section is provided. A serverless function is used as the backend to manage payment processing since Stripe does not allow any requests from the frontend. For payment processing, the serverless function will receive a request to create a payment intent and then return the response with the client secret to be used to confirm card payment from the frontend. So the final transaction success or error status will come from Stripe's `confirmCardPayment` method.

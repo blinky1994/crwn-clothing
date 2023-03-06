@@ -37,6 +37,8 @@ const PaymentForm = () => {
         )
         .then(res => res.json())
         .catch(error => console.log(error));
+
+        console.log({response});
         
         const { paymentIntent: { client_secret }} = response;
 
